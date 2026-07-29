@@ -23,7 +23,7 @@ venv.bak/
 
 # Data & Models (Crucial for Video/Feature datasets)
 # Ignore large feature files, datasets, and videos
-data/
+#data/
 datasets/
 *.mp4
 *.avi
