@@ -1,0 +1,88 @@
+# =========================
+# Deep Learning & Python
+# =========================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Data & Models (Crucial for Video/Feature datasets)
+# Ignore large feature files, datasets, and videos
+data/
+datasets/
+*.mp4
+*.avi
+*.npy
+*.npz
+*.h5
+*.pkl
+*.csv
+
+# Model Checkpoints and Weights
+*.pt
+*.pth
+*.ckpt
+models/
+checkpoints/
+runs/
+wandb/
+lightning_logs/
+
+# Kaggle specific
+.kaggle/
+
+# =========================
+# LaTeX (Report Compilation)
+# =========================
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+# You might want to track the final pdf, but usually it's ignored during dev:
+# *.pdf 
+
+# =========================
+# OS & IDE specific
+# =========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm / IntelliJ
+.idea/
+*.iml
