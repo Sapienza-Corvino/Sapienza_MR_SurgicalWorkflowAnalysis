@@ -29,6 +29,10 @@ jobs:
           if [ -z "$ZIP_NAME" ]; then
             ZIP_NAME="MR_SurgicalWorkflowAnalysis.zip"
           fi
+          # Se l'utente ha dimenticato l'estensione .zip, la aggiunge automaticamente
+          if [[ "$ZIP_NAME" != *.zip ]]; then
+            ZIP_NAME="${ZIP_NAME}.zip"
+          fi
           echo "zip_filename=$ZIP_NAME" >> $GITHUB_OUTPUT
           echo "Using ZIP filename: $ZIP_NAME"
 
