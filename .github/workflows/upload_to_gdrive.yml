@@ -20,16 +20,30 @@ jobs:
 
       - name: Install Google API dependencies
         run: |
-          pip install google-api-python-client google-auth
+          pip install google-api-python-client google-auth google-auth-oauthlib
+
+      - name: Determine ZIP Filename
+        id: zip_name
+        run: |
+          ZIP_NAME="${{ secrets.GDRIVE_ZIP_FILENAME }}"
+          if [ -z "$ZIP_NAME" ]; then
+            ZIP_NAME="MR_SurgicalWorkflowAnalysis.zip"
+          fi
+          echo "zip_filename=$ZIP_NAME" >> $GITHUB_OUTPUT
+          echo "Using ZIP filename: $ZIP_NAME"
 
       - name: Create ZIP Archive of Repository
         run: |
-          git archive --format=zip -o MR_SurgicalWorkflowAnalysis.zip HEAD
+          git archive --format=zip -o "${{ steps.zip_name.outputs.zip_filename }}" HEAD
 
       - name: Upload to Google Drive
         env:
           GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+          GDRIVE_CLIENT_ID: ${{ secrets.GDRIVE_CLIENT_ID }}
+          GDRIVE_CLIENT_SECRET: ${{ secrets.GDRIVE_CLIENT_SECRET }}
+          GDRIVE_REFRESH_TOKEN: ${{ secrets.GDRIVE_REFRESH_TOKEN }}
+          GDRIVE_ZIP_FILENAME: ${{ steps.zip_name.outputs.zip_filename }}
           GDRIVE_SA_JSON: ${{ secrets.GDRIVE_SA_JSON }}
-          ZIP_FILE_PATH: MR_SurgicalWorkflowAnalysis.zip
+          ZIP_FILE_PATH: ${{ steps.zip_name.outputs.zip_filename }}
         run: |
           python .github/scripts/upload_gdrive.py
