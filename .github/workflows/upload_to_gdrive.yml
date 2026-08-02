@@ -1,0 +1,35 @@
+name: Zip and Upload to Google Drive
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  zip-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Google API dependencies
+        run: |
+          pip install google-api-python-client google-auth
+
+      - name: Create ZIP Archive of Repository
+        run: |
+          git archive --format=zip -o MR_SurgicalWorkflowAnalysis.zip HEAD
+
+      - name: Upload to Google Drive
+        env:
+          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+          GDRIVE_SA_JSON: ${{ secrets.GDRIVE_SA_JSON }}
+          ZIP_FILE_PATH: MR_SurgicalWorkflowAnalysis.zip
+        run: |
+          python .github/scripts/upload_gdrive.py
