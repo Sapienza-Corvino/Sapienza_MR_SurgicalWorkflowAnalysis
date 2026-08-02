@@ -1,12 +1,9 @@
 # =========================
 # Deep Learning & Python
 # =========================
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
 
 # Environments
@@ -22,8 +19,7 @@ venv.bak/
 .ipynb_checkpoints
 
 # Data & Models (Crucial for Video/Feature datasets)
-# Ignore large feature files, datasets, and videos
-#data/
+# Note: data/ is tracked (contains links2datasets.md and links2datasets.pdf)
 datasets/
 *.mp4
 *.avi
@@ -31,7 +27,8 @@ datasets/
 *.npz
 *.h5
 *.pkl
-*.csv
+*.zip
+*.tar.gz
 
 # Model Checkpoints and Weights
 *.pt
@@ -63,26 +60,17 @@ lightning_logs/
 *.synctex.gz
 *.toc
 *.xdv
-# You might want to track the final pdf, but usually it's ignored during dev:
-# *.pdf 
 
 # =========================
 # OS & IDE specific
 # =========================
-# macOS
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Windows
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-
-# VS Code
 .vscode/
 *.code-workspace
-
-# PyCharm / IntelliJ
 .idea/
 *.iml
